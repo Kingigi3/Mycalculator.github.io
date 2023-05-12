@@ -1,9 +1,10 @@
 :root {
-   --buttoncolor:  rgb(162, 179, 225);
-   --bodycolor: rgba(59, 70, 100);
-   --calccolor: rgba(37, 45, 68);
-   --white: rgba(255, 255, 255);
-   --keyboardcolor: rgb(68, 75, 93);
+  --buttoncolor: rgb(162, 179, 225);
+  --bodycolor: rgba(59, 70, 100);
+  --calccolor: rgba(37, 45, 68);
+  --white: rgba(255, 255, 255);
+  --keyboardcolor: rgb(68, 75, 93);
+  --screenblack: rgba(24, 31, 50);
 }
 
 body {
@@ -13,12 +14,12 @@ body {
   height: 100vh;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: var(--bodycolor)
+  background-color: var(--bodycolor);
 }
 
 .calculator {
-  height: 380px;
-  font-weight: 700;
+  height: 340px;
+  font-weight: 900;
   font-size: large;
   color: var(--keyboardcolor);
   display: grid;
@@ -26,19 +27,43 @@ body {
   gap: 10px;
   width: 340px;
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(94, 85, 145, 0.2);
-  background-color: var(--calccolor)
+  background-color: var(--calccolor);
+}
+
+.title {
+  margin-top: -70px;
+  margin-left: -320px;
+  font-size: 20px;
+  position: absolute;
+  color: var(--white);
+}
+
+.output {
+  color: var(--white);
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  flex-grow: 1;
+  text-align: right;
+  margin-right: 20px;
+}
+
+.calc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
 }
 
 .screen {
-  grid-column: span 4;
-  height: 40px;
+  width: 100%;
+  height: 100px;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  padding: 0 10px;
-  background-color: var(--white);
+  margin: -20px;
+  background-color: var(--screenblack);
   border-radius: 5px;
 }
 
@@ -50,18 +75,20 @@ body {
   background-color: rgb(234, 227, 219);
   border-radius: 5px;
   cursor: pointer;
+  box-shadow: 0px 3px 0px rgba(179, 161, 149);
 }
 
 .button1 {
-    height: 40px;
-    color: var(--white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--buttoncolor);
-    border-radius: 5px;
-    cursor: pointer;
-  }
+  height: 40px;
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--buttoncolor);
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 3px 2px rgba(65, 78, 113);
+}
 
 .buttonbig {
   grid-column: span 2;
@@ -73,8 +100,25 @@ body {
   background-color: var(--buttoncolor);
   border-radius: 5px;
   cursor: pointer;
+  box-shadow: 0px 3px 2px rgba(65, 78, 113);
 }
 
-.button:hover {
+.buttonbig2 {
+  grid-column: span 2;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: var(--buttoncolor);
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgb(249, 108, 91);
+  box-shadow: 0px 3px 2px rgba(122, 43, 39);
+}
+
+.button:hover,
+.button1:hover,
+.buttonbig:hover {
   background-color: #ccc;
 }
