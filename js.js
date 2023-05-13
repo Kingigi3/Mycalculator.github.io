@@ -116,7 +116,9 @@ deleteButton.addEventListener("click", deleteNumber);
 
 function appendNumber(number) {
   if (screen.textContent === "0" || shouldResetScreen) resetScreen();
-  screen.textContent += number;
+  if (screen.textContent.length < 9) {
+    screen.textContent += number;
+  }
 }
 
 function setOperation(operator) {
@@ -129,7 +131,12 @@ function setOperation(operator) {
 function evaluate() {
   if (currentOperation === null || shouldResetScreen) return;
   secondOperand = parseFloat(screen.textContent);
-  screen.textContent = String(operate(currentOperation, firstOperand, secondOperand));
+  let result = operate(currentOperation, firstOperand, secondOperand);
+  if (result.toString().length > 9) {
+    screen.textContent = result.toExponential(4);
+  } else {
+    screen.textContent = String(result);
+  }
   currentOperation = null;
 }
 
