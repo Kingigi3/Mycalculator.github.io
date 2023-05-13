@@ -5,9 +5,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   let body = document.querySelector("body");
   let calculator = document.querySelector(".calculator");
-  let buttons = calculator.querySelectorAll(
-    ".button"
-  ); 
+  let buttons = calculator.querySelectorAll(".button");
   let screen = document.querySelector(".screen");
   let buttonbig2 = document.querySelector(".buttonbig2");
   let buttonbig = document.querySelector(".buttonbig");
@@ -36,7 +34,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       numbers.style.color = "";
       title.style.color = "";
       button.style.color = "";
-      button1.style.boxShadow = "0px 3px 2px rgba(65, 78, 113)"
+      button1.style.boxShadow = "0px 3px 2px rgba(65, 78, 113)";
       buttons.forEach((button) => {
         button.style.backgroundColor = "rgb(234, 227, 219)";
         button.style.color = "black";
@@ -90,3 +88,113 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 });
+
+//calculator logic fully initialized
+let firstOperand = "";
+let secondOperand = "";
+let currentOperation = null;
+let shouldResetScreen = false;
+
+const numberButtons = document.querySelectorAll(".button");
+const deleteButton = document.querySelector("#deleteButton");
+const equalsButton = document.querySelector(".buttonbig2");
+const operatorButtons = document.querySelectorAll(".operator");
+const allClearButton = document.querySelector(".buttonbig");
+const screen = document.querySelector(".output");
+
+numberButtons.forEach((button) => {
+  button.addEventListener("click", () => appendNumber(button.textContent));
+});
+
+operatorButtons.forEach((button) => {
+  button.addEventListener("click", () => setOperation(button.textContent));
+});
+
+equalsButton.addEventListener("click", evaluate);
+allClearButton.addEventListener("click", reset);
+deleteButton.addEventListener("click", deleteNumber);
+
+function appendNumber(number) {
+  if (screen.textContent === "0" || shouldResetScreen) resetScreen();
+  screen.textContent += number;
+}
+
+function setOperation(operator) {
+  if (currentOperation !== null) evaluate();
+  firstOperand = parseFloat(screen.textContent);
+  currentOperation = operator;
+  shouldResetScreen = true;
+}
+
+function evaluate() {
+  if (currentOperation === null || shouldResetScreen) return;
+  secondOperand = parseFloat(screen.textContent);
+  screen.textContent = String(operate(currentOperation, firstOperand, secondOperand));
+  currentOperation = null;
+}
+
+function reset() {
+  screen.textContent = "0";
+  firstOperand = "";
+  secondOperand = "";
+  currentOperation = null;
+}
+
+function resetScreen() {
+  screen.textContent = "";
+  shouldResetScreen = false;
+}
+
+function deleteNumber() {
+  if (screen.textContent.length === 1) {
+    screen.textContent = "0";
+  } else {
+    screen.textContent = screen.textContent.slice(0, -1);
+  }
+  shouldResetScreen = false;
+}
+
+// Calculation Functions
+
+function add(a, b) {
+  return a + b;
+}
+
+function subtract(a, b) {
+  return a - b;
+}
+
+function multiply(a, b) {
+  return a * b;
+}
+
+function divide(a, b) {
+  return a / b;
+}
+
+function operate(operator, a, b) {
+  let result = 0;
+  switch (operator) {
+    case "+":
+      result = add(a, b);
+      break;
+    case "÷":
+      if (b === 0) return "Error";
+      else result = divide(a, b);
+      break;
+    case "-":
+      result = subtract(a, b);
+      break;
+    case "*":
+      result = multiply(a, b);
+      break;
+    case "/":
+      if (b === 0) return "Error";
+      else result = divide(a, b);
+      break;
+    default:
+      return null;
+  }
+  return Math.round((result + Number.EPSILON) * 100) / 100;
+}
+

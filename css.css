@@ -179,6 +179,9 @@ body {
     margin-right: -50px;
   }
 
+  .toggle {
+    margin-right: 30px;
+  }
 }
 
 @media screen and (max-width: 300px){
@@ -187,12 +190,19 @@ body {
     margin-left: 20px;
   }
 
-  title {
-    margin-right: -50px;
+  .title {
+    margin-right: -80px;
   }
 
   .screen{
-    width: 60%;
+    width: 66%;
+  }
+
+  .Inside {
+    margin-right: -20px;
+  }
+  .toggle {
+    margin-right: 80px;
   }
 }
 
