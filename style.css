@@ -167,6 +167,10 @@ body {
   background-color: #ccc;
 }
 
+.numbers, .button, .buttonbig2, .button1, .buttonbig {
+  user-select: none;
+}
+
 @media screen and (max-width: 380px){
   .calculator {
     width: 80%;
