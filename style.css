@@ -113,7 +113,7 @@ body {
 .button {
   height: 40px;
   display: flex;
-  transition: all 0.3 ease-in-out;
+    
   justify-content: center;
   align-items: center;
   background-color: rgb(234, 227, 219);
